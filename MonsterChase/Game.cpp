@@ -6,7 +6,7 @@
 #endif // _DEBUG
 #include "Monster.h"
 #include "Player.h"
-#include "Vector.cpp" //linked error
+#include "Vector.h"
 #include "ConsoleLog.h"
 using namespace std;
 int main()
