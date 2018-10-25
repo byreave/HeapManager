@@ -16,7 +16,7 @@ HeapManager * HeapManager::create(void * i_pMemory, size_t i_sizeMemory, unsigne
 	heapManager->m_FreeBlockListHead->m_sizeBlock = i_sizeMemory - i_numDescriptors * sizeof(BlockDescriptor) - sizeof(HeapManager);
 	heapManager->m_OutstandingBlockListHead = nullptr;
 	BlockDescriptor * tmp = heapManager->m_FreeBlockListHead;
-	for (int i = 0; i < i_numDescriptors-1; i++)
+	for (unsigned int i = 0; i < i_numDescriptors-1; i++)
 	{
 		tmp->next = tmp + 1;
 		tmp = tmp->next;
