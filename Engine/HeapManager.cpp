@@ -134,6 +134,7 @@ void * HeapManager::_alloc(size_t i_size, size_t i_alignment)
 	}
 	if (curFreeBlock == nullptr)
 		return nullptr;
+	//this is deprecated in Assignment 1.04.02
 	//create a new desc(into free block list) to desc the memory of alignment offset 
 	//and alloc memory at an aligned address
 	//this might cause fragmentation
@@ -191,7 +192,7 @@ void * HeapManager::_alloc(size_t i_size, size_t i_alignment)
 		//not enough descriptors
 		if (m_FreeBlockListTail == nullptr)
 		{
-			m_FreeBlockListHead = nullptr;
+			return nullptr;
 		}
 		//when it is the free block list head
 		if (prevFreeBlock == nullptr)
