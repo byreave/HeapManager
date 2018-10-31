@@ -38,7 +38,7 @@ void * HeapManager::_alloc(size_t i_size)
 	//	return nullptr;
 	BlockDescriptor * curFreeBlock = m_FreeBlockListHead;
 	BlockDescriptor * prevFreeBlock = nullptr;
-	while (curFreeBlock->m_sizeBlock < i_size && curFreeBlock != nullptr)
+	while (curFreeBlock != nullptr && curFreeBlock->m_sizeBlock < i_size)
 	{
 		prevFreeBlock = curFreeBlock;
 		curFreeBlock = curFreeBlock->next;
@@ -63,7 +63,7 @@ void * HeapManager::_alloc(size_t i_size)
 	{
 		BlockDescriptor * m_FreeBlockListTail = m_FreeBlockListHead, *m_PrevFreeBlockListTail = nullptr;
 		//get last node of free block list
-		while (m_FreeBlockListTail->m_pBlockStartAddr != nullptr && m_FreeBlockListTail != nullptr)
+		while (m_FreeBlockListTail != nullptr && m_FreeBlockListTail->m_pBlockStartAddr != nullptr)
 		{
 			m_PrevFreeBlockListTail = m_FreeBlockListTail;
 			m_FreeBlockListTail = m_FreeBlockListTail->next;
@@ -139,7 +139,7 @@ void * HeapManager::_alloc(size_t i_size, size_t i_alignment)
 	//this might cause fragmentation
 	BlockDescriptor * m_FreeBlockListTail = m_FreeBlockListHead, *m_PrevFreeBlockListTail = nullptr;
 	//get last node of free block list
-	while (m_FreeBlockListTail->m_pBlockStartAddr != nullptr && m_FreeBlockListTail != nullptr)
+	while (m_FreeBlockListTail != nullptr && m_FreeBlockListTail->m_pBlockStartAddr != nullptr)
 	{
 		m_PrevFreeBlockListTail = m_FreeBlockListTail;
 		m_FreeBlockListTail = m_FreeBlockListTail->next;
@@ -183,7 +183,7 @@ void * HeapManager::_alloc(size_t i_size, size_t i_alignment)
 	{
 		//get a new desc
 		m_FreeBlockListTail = m_FreeBlockListHead, m_PrevFreeBlockListTail = nullptr;
-		while (m_FreeBlockListTail->m_pBlockStartAddr != nullptr && m_FreeBlockListTail != nullptr)
+		while (m_FreeBlockListTail != nullptr && m_FreeBlockListTail->m_pBlockStartAddr != nullptr )
 		{
 			m_PrevFreeBlockListTail = m_FreeBlockListTail;
 			m_FreeBlockListTail = m_FreeBlockListTail->next;
