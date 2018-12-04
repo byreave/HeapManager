@@ -24,13 +24,11 @@ Monster::~Monster()
 //True means that player was caught
 bool Monster::Move(Point2D<int> & playerPos, int & monCount, char * monName)
 {
-	int distanceX = playerPos.getX() - Pos.getX();
-	int distanceY = playerPos.getY() - Pos.getY();
-
+	Point2D<int> distance = playerPos - Pos;
 	
-	if (abs(distanceX) >= abs(distanceY))
+	if (abs(distance.getX()) >= abs(distance.getY()))
 	{
-		if (distanceX < 0)
+		if (distance.getX() < 0)
 			Pos.setX(Pos.getX() - 1);
 		else
 			Pos.setX(Pos.getX() + 1);
@@ -38,7 +36,7 @@ bool Monster::Move(Point2D<int> & playerPos, int & monCount, char * monName)
 	}
 	else
 	{
-		if (distanceY < 0)
+		if (distance.getY() < 0)
 			Pos.setY(Pos.getY() - 1);
 		else
 			Pos.setY(Pos.getY() + 1);
